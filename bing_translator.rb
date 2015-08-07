@@ -22,12 +22,14 @@ puts "input encontrado #{input.exist?}"
 puts "output encontrado #{output.exist?}"
 puts "button encontrado #{button.exist?}"
 
-input.set "como vai você meu caro"
+origin_text = "Como vai você meu caro?"
+
+input.set origin_text
 input.fire_event :change
 button.fire_event :click
 sleep  5
 
-puts "#{input.text} => #{output.text}\n"
+puts "#{origin_text} => #{output.text}\n"
 
 puts browser.title
 
