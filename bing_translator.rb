@@ -27,8 +27,7 @@ input.fire_event :change
 button.fire_event :click
 sleep  5
 
-puts output.text
+puts "#{input.text} => #{output.text}\n"
 
 puts browser.title
 
-puts output.text
