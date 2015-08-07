@@ -11,23 +11,25 @@ browser.goto url
 input = browser.text_field(:id=>"InputText")
 output = browser.div(:id=>"OutputText")
 button = browser.div(:id => "TranslateButton")
+loading = browser.div(:id => "ProgressDiv")
 
+# Select language out
+language = 'pt' # 'en' for english
+browser.link(:id=>"Lang_DstLangList_#{language}").click
 
-
-#until input.visible? do sleep 1 end
-#until output.visible? do sleep 1 end
-#until browser.input(:id=>"InputText").visible? do sleep 1 end
 
 puts "input encontrado #{input.exist?}"
 puts "output encontrado #{output.exist?}"
 puts "button encontrado #{button.exist?}"
 
-origin_text = "Como vai você meu caro?"
+# origin_text = "Como vai você meu caro?"
+origin_text = "How are you my dear?"
+
 
 input.set origin_text
 input.fire_event :change
 button.fire_event :click
-sleep  5
+loading.wait_until_present
 
 puts "#{origin_text} => #{output.text}\n"
 
