@@ -35,3 +35,5 @@ loading.wait_while_present
 
 puts "#{origin_text} => #{output.text}\n"
 
+browser.close
+headless.destroy
