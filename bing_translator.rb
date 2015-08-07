@@ -5,9 +5,10 @@ require 'watir-webdriver'
 url  = 'http://www.bing.com/translator/default.aspx?MKT=pt-br'
 #browser = Watir::Browser.new :chrome
 headless = Headless.new
-    headless.start
+headless.start
 browser = Watir::Browser.new
 browser.goto url
+
 input = browser.text_field(:id=>"InputText")
 output = browser.div(:id=>"OutputText")
 button = browser.div(:id => "TranslateButton")
@@ -15,7 +16,8 @@ loading = browser.div(:id => "ProgressDiv")
 
 # Select language out
 language = 'pt' # 'en' for english
-browser.link(:id=>"Lang_DstLangList_#{language}").click
+browser.span(:id=>"Header_DstLangList").click
+browser.link(:id=>"Lang_DstLangList_#{language}").when_present {|link| link.click}
 
 
 puts "input encontrado #{input.exist?}"
@@ -29,9 +31,9 @@ origin_text = "How are you my dear?"
 input.set origin_text
 input.fire_event :change
 button.fire_event :click
-loading.wait_until_present
+loading.wait_while_present
 
 puts "#{origin_text} => #{output.text}\n"
 
-puts browser.title
+
 
