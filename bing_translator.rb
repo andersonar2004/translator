@@ -12,7 +12,7 @@ headless.start
 browser = Watir::Browser.new
 browser.goto url
 
-input = browser.text_field(:id=>"InputText")
+input = browser.textarea(:id=>"InputText")
 output = browser.div(:id=>"OutputText")
 button = browser.div(:id => "TranslateButton")
 loading = browser.div(:id => "ProgressDiv")
@@ -34,6 +34,4 @@ button.fire_event :click
 loading.wait_while_present
 
 puts "#{origin_text} => #{output.text}\n"
-
-
 
